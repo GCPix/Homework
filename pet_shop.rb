@@ -84,16 +84,17 @@ end
 
 def sell_pet_to_customer(pet_shop_array, item, customer)
 
-  #pet = find_pet_by_name(pet_shop_array, new_pet)
 if item != nil
   if customer_can_afford_pet(customer, item) == true
+
+    initial_pet_count = customer[:pets].length
 
       add_pet_to_customer(customer, item)
 
       remove_customer_cash(customer, item[:price])
 
-      #increase_pets_sold(pet_shop_array, no_sold)
-      pet_shop_array[:admin][:pets_sold]+=1
+      increase_pets_sold(pet_shop_array, (customer[:pets].length - initial_pet_count))
+
       add_or_remove_cash(pet_shop_array, item[:price])
       end
 
